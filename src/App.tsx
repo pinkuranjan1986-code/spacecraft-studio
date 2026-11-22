@@ -61,6 +61,14 @@ function App() {
       ? 'noindex,nofollow'
       : 'index,follow';
   }, [location.pathname]);
+  useEffect(() => {
+    if (!menu) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenu(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menu]);
   return (
     <>
       <a className="skip-link" href="#main">
@@ -91,6 +99,7 @@ function App() {
             <button
               className="menu-toggle"
               aria-label={menu ? 'Close menu' : 'Open menu'}
+              aria-expanded={menu}
               onClick={() => setMenu(!menu)}
             >
               {menu ? <X /> : <Menu />}
