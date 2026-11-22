@@ -1,0 +1,20 @@
+[
+  {
+    "city": "Bengaluru",
+    "locality": "Whitefield",
+    "citySlug": "bengaluru",
+    "slug": "whitefield",
+    "title": "Home & workspace concepts in Whitefield",
+    "description": "Explore compact home layouts and flexible workspaces for a Whitefield project. Share your site dimensions and bring an editable concept to a qualified local reviewer.",
+    "illustrative": true
+  },
+  {
+    "city": "Hyderabad",
+    "locality": "Gachibowli",
+    "citySlug": "hyderabad",
+    "slug": "gachibowli",
+    "title": "Thoughtful space planning in Gachibowli",
+    "description": "Start a Gachibowli office, home or retail brief with functional zones, interior directions and optional Vastu preference notes for professional discussion.",
+    "illustrative": true
+  }
+]

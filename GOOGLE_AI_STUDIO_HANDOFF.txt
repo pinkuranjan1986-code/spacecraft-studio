@@ -1,0 +1,40 @@
+SPACECRAFT STUDIO — GOOGLE AI STUDIO HANDOFF
+
+Continue developing the supplied existing application. Preserve its useful work and polished visual design. Inspect the repository and README before changing code. Do not rebuild it from scratch or merge it with an unrelated application.
+
+WHAT THIS PROJECT IS
+A standalone React 19 / TypeScript / Vite / Tailwind CSS web app for draft building-plan and interior concepts. It supports home, office, warehouse/godown, shop/commercial, custom and interior-only briefs. It has a five-step wizard, SVG floor layouts, editable room requirements and regeneration, optional Vastu notes, interior palettes, saved projects and versions, SVG/JSON exports, JSON import, print/PDF, consent-based consultation records and illustrative locality pages.
+
+HOW TO IMPORT
+The accompanying ZIP contains the full source at its root, including package.json, lockfile, src, tests, Supabase migrations, configuration and setup docs. Extract into its own project folder. Google's documented existing-code workflow is AI Studio Build > Add files (+) > Import from GitHub. Add this extracted source to a GitHub repository that you choose to connect, then use that import. No GitHub upload has been performed for you. If your AI Studio interface offers ZIP/project file upload, you may use that option instead; ZIP import support has not been verified here. The code-context TXT is an additional readable handoff, not a replacement for the complete source ZIP.
+Official guidance: https://aistudio.google.com/docs/aistudio-build-mode
+
+RUN AND PREVIEW
+Use Node.js 24 and npm. Run npm ci, then npm run dev. For a hosted preview that needs an externally bound Vite server, run npm run dev -- --host 0.0.0.0 --port <the preview runtime's assigned port>. The local default binds 127.0.0.1:5173; adapt host/port only as needed for the preview container. Do not replace the app architecture merely to start the preview. npm run build creates dist. See README for Cloudflare Pages.
+
+DEFAULTS TO PRESERVE
+- No API keys or accounts are needed. Local demo projects and leads stay in browser localStorage.
+- Supabase is optional. Keep blank placeholder variables in .env.example; do not invent credentials or contact numbers. Cloud Auth/Storage/API still need integration tests against a configured account.
+- The layout engine is deterministic. Do not add Gemini or another AI service for room placement, geometry or dimensions.
+- Keep the future AIProvider interface disabled unless explicitly requested. Future integrations must be server-side and require separate explicit customer consent before sharing plans/personal information. Consultation consent is not AI-sharing consent.
+- Keep Vastu rules editable in src/config.ts. They are preference checks, not certification or universal compliance.
+- All outputs must retain: Draft concept — professional review required.
+- Rectangular concepts, including confirmed inscribed envelopes for irregular plots, are approximations. Do not claim construction readiness, structural safety, code approval, verified access/fire safety, costs or legally checked setbacks.
+- Mood SVGs are illustrations, not measured furniture plans. Service areas are illustrative; do not invent local business addresses, reviews or completed project results.
+- Preserve RLS, ownership restrictions and immutable project versions. Never put service-role, AI or payment secrets in frontend variables.
+- Do not deploy, create paid resources, add payments or send customer data externally without an explicit user request.
+
+IMPORTANT ENTRYPOINTS
+src/App.tsx: routes, shell, local/cloud selection and metadata.
+src/pages/: customer screens; src/components/: shared UI and interior board.
+src/engine.ts: layout partitioning, metres/feet conversion and Vastu preference evaluation.
+src/models.ts: typed Zod input and saved-data validation.
+src/storage.ts: browser and Supabase repository adapters.
+src/config.ts and src/service-areas.json: configurable product data.
+supabase/migrations/: schema, atomic writes, validation, RLS and private uploads.
+
+VALIDATION
+Run npm run lint, npm run typecheck, npm test, npm run test:db and npm run build. Browser suite: install Chromium via npx playwright install chromium, then npm run test:e2e. Where installed Chrome is available, PLAYWRIGHT_CHANNEL=chrome npm run test:e2e is supported. The prior local run passed 25 unit tests, 22 desktop/mobile browser tests and 24 embedded PostgreSQL policy assertions. These results describe the export source, not a guarantee about the AI Studio runtime. Full hosted Supabase integration remains unverified.
+
+FIRST TASK AFTER IMPORT
+Inspect the code, install dependencies and make the existing app render in the preview. Preserve behavior and styling. Report the exact changes made, the checks run, and any runtime-specific limitation. Await my next feature request instead of adding AI features or rebuilding the app.
